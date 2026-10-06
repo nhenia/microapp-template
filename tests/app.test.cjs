@@ -38,3 +38,24 @@ assert.equal(manifest.name,configContext.APP_CONFIG.name);
 assert.equal(manifest.start_url,'./');
 assert.ok(fs.readFileSync('sw.js','utf8').includes("'./config.js'"));
 console.log('PASS: template settings and relative PWA paths.');
+
+// Regression: clicking Edit again must never replace the current draft.
+store.clear(); app=boot(); app.submit('original');
+const actions=()=>app.get('#entries').children[0].children[1].children[1].children;
+actions()[0].onclick(); app.get('#sentence').value='unsaved revision';
+actions()[0].onclick(); assert.equal(app.get('#sentence').value,'unsaved revision');
+assert.equal(saved()[0].text,'original');
+// Deleting the edited record preserves the draft and exits edit mode.
+actions()[1].onclick(); assert.equal(saved().length,0);
+assert.equal(app.get('#sentence').value,'unsaved revision');
+assert.equal(app.get('#cancel').hidden,true);
+app.submit(app.get('#sentence').value); assert.equal(saved()[0].text,'unsaved revision');
+// Finite numbers outside Date's range must be rejected without overwriting storage.
+for (const createdAt of [1e20,-1e20]) {
+ const raw=JSON.stringify([{id:'x',text:'note',createdAt}]); store.set(storageKey,raw);
+ assert.doesNotThrow(()=>{app=boot();});
+ assert.match(app.get('#status').textContent,/archive could not be opened/);
+ app.submit('keep this draft'); assert.equal(store.get(storageKey),raw);
+ assert.equal(app.get('#sentence').value,'keep this draft');
+}
+console.log('PASS: repeated-edit draft retention, deletion draft retention and resave, invalid-date protection.');

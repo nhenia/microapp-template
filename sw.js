@@ -1,5 +1,5 @@
 const PREFIX = `microapp-${self.registration.scope}-`;
-const CACHE = `${PREFIX}9a8ecf192a69`;
+const CACHE = `${PREFIX}6b7ed2e76559`;
 const ASSETS = ['./', './index.html', './style.css', './script.js', './config.js', './manifest.webmanifest', './icon.svg', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));

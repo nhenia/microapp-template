@@ -26,7 +26,7 @@ function announce(message, error = false) {
 function readEntries() {
   const raw = localStorage.getItem(KEY);
   const value = raw === null ? [] : JSON.parse(raw);
-  if (!Array.isArray(value) || value.some(e => !e || typeof e.id !== 'string' || typeof e.text !== 'string' || !Number.isFinite(e.createdAt))) throw new Error('Invalid archive');
+  if (!Array.isArray(value) || value.some(e => !e || typeof e.id !== 'string' || typeof e.text !== 'string' || !Number.isFinite(e.createdAt) || !Number.isFinite(new Date(e.createdAt).getTime()))) throw new Error('Invalid archive');
   return value;
 }
 function refresh() {
@@ -38,8 +38,8 @@ function persist(next) {
   try { localStorage.setItem(KEY, JSON.stringify(next)); entries = next; return true; }
   catch { announce('Could not save. Browser storage may be full or blocked. Your text is still here; copy it before closing.', true); return false; }
 }
-function finishEdit() {
-  editing = null; input.value = ''; cancel.hidden = true;
+function finishEdit(clearDraft = true) {
+  editing = null; if (clearDraft) input.value = ''; cancel.hidden = true;
   document.querySelector('#save').textContent = settings.saveLabel;
   document.querySelector('#input-label').textContent = settings.inputLabel;
 }
@@ -58,6 +58,7 @@ function render() {
     const edit = document.createElement('button'); edit.type = 'button'; edit.textContent = 'Edit';
     edit.setAttribute('aria-label', `Edit: ${entry.text}`);
     edit.onclick = () => {
+      if (editing === entry.id) { input.focus(); return; }
       if (input.value.trim() && editing !== entry.id && !confirm('Replace the text currently in the writing field?')) return;
       editing = entry.id; input.value = entry.text; cancel.hidden = false;
       document.querySelector('#save').textContent = 'SAVE CHANGES';
@@ -70,8 +71,9 @@ function render() {
       if (!confirm('Delete this note? This cannot be undone.')) return;
       refresh(); if (!readable) return;
       if (persist(entries.filter(e => e.id !== entry.id))) {
-        if (editing === entry.id) finishEdit();
-        render(); announce('Deleted.'); input.focus();
+        const keepDraft = editing === entry.id;
+        if (keepDraft) finishEdit(false);
+        render(); announce(keepDraft ? 'Deleted. Your text is still here; save it as a new note.' : 'Deleted.'); input.focus();
       }
     };
     actions.append(edit, remove); bottom.append(time, actions); item.append(text, bottom); list.append(item);
