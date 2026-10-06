@@ -72,3 +72,7 @@ Apps on separate paths use separate storage keys. These keys prevent accidental 
 Use [TESTING.md](docs/TESTING.md) before calling a new app finished and [TROUBLESHOOTING.md](docs/TROUBLESHOOTING.md) when something does not work.
 
 Official GitHub help: [Use a template](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template) · [Publish with Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+
+## Included app: The Usual
+
+[The Usual](apps/the-usual/README.md) is a separate customer index with search, photos, favorites, undo and downloadable backups. Its files live in `apps/the-usual/`; the original notes template is unchanged. The publishing workflow checks both apps and includes The Usual at `/the-usual/`.
