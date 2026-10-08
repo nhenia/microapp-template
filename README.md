@@ -76,3 +76,7 @@ Official GitHub help: [Use a template](https://docs.github.com/en/repositories/c
 ## Included app: The Usual
 
 [The Usual](apps/the-usual/README.md) is a separate customer index with search, photos, favorites, undo and downloadable backups. Its files live in `apps/the-usual/`; the original notes template is unchanged. The publishing workflow checks both apps and includes The Usual at `/the-usual/`.
+
+## Perfume 7 library
+
+[Perfume 7](apps/perfume-7/README.md) is a separate mobile reference library with searchable project sources, related reading, bookmarks and offline access. The Pages workflow includes it at `/perfume-7/`.
