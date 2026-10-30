@@ -1,0 +1,136 @@
+{
+  "updated": "2026-10-29",
+  "timezone": "America/Chicago",
+  "venues": [
+    {
+      "id": "bourbon-house",
+      "name": "Bourbon House",
+      "area": "French Quarter",
+      "address": "144 Bourbon St, New Orleans, LA",
+      "lat": 29.95361,
+      "lng": -90.06953,
+      "kind": [
+        "raw"
+      ],
+      "price": 1,
+      "unit": "each",
+      "deal": "$1 raw oysters on the half shell",
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "start": "14:00",
+      "end": "17:00",
+      "note": "Bar areas only",
+      "source": "https://www.bourbonhouse.com/menu/happy-hour/"
+    },
+    {
+      "id": "luke",
+      "name": "Luke",
+      "area": "CBD",
+      "address": "333 St Charles Ave, New Orleans, LA",
+      "lat": 29.95015,
+      "lng": -90.07043,
+      "kind": [
+        "raw",
+        "fried"
+      ],
+      "price": 1.5,
+      "unit": "each",
+      "deal": "$1.50 Gulf oysters; $3 specialty oysters",
+      "days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": "15:00",
+      "end": "18:00",
+      "note": "Half-price select drinks",
+      "source": "https://www.lukeneworleans.com/menu"
+    },
+    {
+      "id": "seaworthy",
+      "name": "Seaworthy",
+      "area": "CBD",
+      "address": "630 Carondelet St, New Orleans, LA",
+      "lat": 29.94688,
+      "lng": -90.07159,
+      "kind": [
+        "raw"
+      ],
+      "price": null,
+      "unit": "variable",
+      "deal": "Half-off raw oysters; selection and final prices vary",
+      "days": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "start": "16:00",
+      "end": "18:00",
+      "note": "Daily oyster selection changes",
+      "source": "https://seaworthynola.com/"
+    },
+    {
+      "id": "desire",
+      "name": "Desire Oyster Bar",
+      "area": "French Quarter",
+      "address": "300 Bourbon St, New Orleans, LA",
+      "lat": 29.95527,
+      "lng": -90.0682,
+      "kind": [
+        "raw",
+        "chargrilled"
+      ],
+      "price": 1.5,
+      "unit": "each",
+      "deal": "$1.50 raw oysters",
+      "days": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "start": "16:00",
+      "end": "18:00",
+      "note": "Monday through Thursday",
+      "source": "https://www.sonesta.com/royal-sonesta/la/new-orleans/royal-sonesta-new-orleans/desire-oyster-bar"
+    },
+    {
+      "id": "otis",
+      "name": "Otis",
+      "area": "French Quarter",
+      "address": "201 Chartres St, New Orleans, LA",
+      "lat": 29.95175,
+      "lng": -90.06595,
+      "kind": [
+        "raw"
+      ],
+      "price": 10,
+      "unit": "half-dozen",
+      "deal": "$10 for six oysters",
+      "days": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "start": "15:00",
+      "end": "18:00",
+      "note": "Half-dozen deal; verify selection",
+      "source": "https://otisseafood.com/wine-and-cocktail-bar-new-orleans/"
+    }
+  ]
+}
