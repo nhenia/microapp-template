@@ -1,0 +1,47 @@
+name: Deploy MOYSTER to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "apps/moister/**"
+      - ".github/workflows/deploy-moyster-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "moyster-pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Publish MOYSTER
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check deployment files
+        run: |
+          test -s apps/moister/index.html
+          test -s apps/moister/data/deals.json
+          python3 -m json.tool apps/moister/data/deals.json > /dev/null
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload MOYSTER website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/moister
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
